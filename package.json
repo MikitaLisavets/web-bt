@@ -1,0 +1,11 @@
+{
+  "name": "web-bt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "author": "Mikita Lisavets",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
