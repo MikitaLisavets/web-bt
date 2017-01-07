@@ -5,6 +5,18 @@
   <title>WebBT</title>
 </head>
 <body>
+  <form onsubmit="APP.onSubmit(event)">
+    <fieldset>
+      <legend>Web bluetooth options</legend>
+      <label for="serviceId">Service id:</label>
+      <input id="serviceId" type="text">
+      <br><br>
+      <label for="characteristicId">Characteristic id:</label>
+      <input id="characteristicId" type="text">
+    </fieldset>
+    <br>
+    <button type="submit">Submit</button>
+  </form>
   <script src="app.js"></script>
 </body>
 </html>
