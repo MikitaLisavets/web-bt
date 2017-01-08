@@ -3,19 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <title>WebBT</title>
+  <style>
+    .read-only:checked ~ .read-only {
+      pointer-events: none;
+    }
+  </style>
 </head>
 <body>
-  <form onsubmit="APP.onSubmit(event)">
+  <form onsubmit="return false;">
     <fieldset>
       <legend>Web bluetooth options</legend>
-      <label for="serviceId">Service id:</label>
-      <input id="serviceId" type="text">
+      <label for="deviceName">Device name:</label>
+      <input id="deviceName" type="text" value="MI">
+      <br>
+      <br>
+      <label for="serviceUuid">Service uuid:</label>
+      <input id="serviceUuid" type="text" value="0x1802">
       <br><br>
-      <label for="characteristicId">Characteristic id:</label>
-      <input id="characteristicId" type="text">
+      <label for="characteristicUuid">Characteristic uuid:</label>
+      <input id="characteristicUuid" type="text" value="0x2A06">
+
+      <hr>
+      <label>Read:</label>
+      <input class="read-only" type="radio" name="controlType" checked value="0">
+      <label>Write:</label>
+      <input type="radio" name="controlType" value="1">
+      <br>
+      <br>
+      <label>Characteristic value:</label>
+      <input class="read-only" id="characteristicValue" type="text">
     </fieldset>
     <br>
-    <button type="submit">Submit</button>
+    <button onclick="APP.connect()">Connect</button>
+    <button onclick="APP.submit()">Submit</button>
   </form>
   <script src="app.js"></script>
 </body>
