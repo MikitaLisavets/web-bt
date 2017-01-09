@@ -1,24 +1,7 @@
 let APP = ((window, document) => {
   let deviceName, serviceUuid, characteristicUuid, controlType, characteristicValue,
-    currentService, currentCharacteristic;
-  
-  function connect() {
-    getOptions();
-    navigator.bluetooth.requestDevice({
-      filters: [{name: deviceName}],
-      optionalServices: [serviceUuid]
-    }).then(device => device.gatt.connect())
-    .then(server => server.getPrimaryService(serviceUuid))
-    .then(service => {
-      currentService = service;
-      return service.getCharacteristic(characteristicUuid)
-    })
-    .then(characteristic => {
-      currentCharacteristic = characteristic;
-      onSuccessConnect();
-    });
-  };
-
+    curentDevice, currentService, currentCharacteristic;
+    
   function onSuccessConnect() {
     alert('Device connected');
   };
@@ -50,10 +33,31 @@ let APP = ((window, document) => {
     if (!currentCharacteristic) return;
     return currentCharacteristic.readValue()
       .then(characteristicData => {
-        console.log(characteristicData);
-        characteristicValue.value = characteristicData;
+        console.log(characteristicData.getUint8(1));
+        characteristicValue.value = ab2str(characteristicData.buffer);
       });
   }
+
+  function connect() {
+    getOptions();
+    navigator.bluetooth.requestDevice({
+      filters: [{name: deviceName}],
+      optionalServices: [serviceUuid]
+    }).then(device => {
+      curentDevice = device;
+      return device.gatt.connect()
+    })
+    .then(server => server.getPrimaryService(serviceUuid))
+    .then(service => {
+      currentService = service;
+      return service.getCharacteristic(characteristicUuid)
+    })
+    .then(characteristic => {
+      currentCharacteristic = characteristic;
+      onSuccessConnect();
+    });
+  };
+
 
   function submit() {
     getOptions();

@@ -14,14 +14,17 @@
     <fieldset>
       <legend>Web bluetooth options</legend>
       <label for="deviceName">Device name:</label>
-      <input id="deviceName" type="text" value="MI">
+      <input id="deviceName" type="text">
       <br>
       <br>
       <label for="serviceUuid">Service uuid:</label>
-      <input id="serviceUuid" type="text" value="0x1802">
+      <input id="serviceUuid" type="text">
       <br><br>
       <label for="characteristicUuid">Characteristic uuid:</label>
-      <input id="characteristicUuid" type="text" value="0x2A06">
+      <input id="characteristicUuid" type="text">
+      <br>
+      <br>
+      <button onclick="APP.connect()">Connect</button>
 
       <hr>
       <label>Read:</label>
@@ -32,10 +35,10 @@
       <br>
       <label>Characteristic value:</label>
       <input class="read-only" id="characteristicValue" type="text">
+      <br>
+      <br>
+      <button onclick="APP.submit()">Submit</button>
     </fieldset>
-    <br>
-    <button onclick="APP.connect()">Connect</button>
-    <button onclick="APP.submit()">Submit</button>
   </form>
   <script src="app.js"></script>
 </body>
